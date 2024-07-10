@@ -6,6 +6,7 @@ import Link from "next/link";
 export default async function Navbar() {
   const session = await auth();
 
+  
   return (
     <div className="drawer ">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />

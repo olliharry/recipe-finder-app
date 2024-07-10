@@ -6,7 +6,6 @@ import Link from "next/link";
 export default async function Navbar() {
   const session = await auth();
 
-  
   return (
     <div className="drawer ">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -71,7 +70,7 @@ export default async function Navbar() {
                         <form
                           action={async () => {
                             "use server";
-                            await signOut();
+                            await signOut({ redirectTo: "/" });
                           }}
                         >
                           <button
@@ -123,7 +122,7 @@ export default async function Navbar() {
                     <form
                       action={async () => {
                         "use server";
-                        await signOut();
+                        await signOut({ redirectTo: "/" });
                       }}
                     >
                       <button type="submit">Sign out</button>

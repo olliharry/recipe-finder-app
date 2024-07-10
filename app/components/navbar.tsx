@@ -37,17 +37,19 @@ export default async function Navbar() {
           </div>
           <div className="hidden flex-none lg:block">
             <ul className="menu menu-horizontal">
-              {!session?.user && (
+              {!session && (
                 <li>
-                  <Link
-                    href="/api/auth/signin"
-                    className="btn btn-primary text-xl font-extrabold"
+                  <form
+                    action={async () => {
+                      "use server";
+                      await signIn();
+                    }}
                   >
-                    Sign In
-                  </Link>
+                    <button type="submit">Sign in</button>
+                  </form>
                 </li>
               )}
-              {session?.user && (
+              {session && (
                 <li>
                   <details>
                     <summary>
@@ -96,12 +98,19 @@ export default async function Navbar() {
           className="drawer-overlay"
         ></label>
         <ul className="menu bg-base-200 min-h-full w-80 p-4">
-          {!session?.user && (
+          {!session && (
             <li>
-              <Link href="/api/auth/signin">Sign In</Link>
+              <form
+                action={async () => {
+                  "use server";
+                  await signIn();
+                }}
+              >
+                <button type="submit">Sign in</button>
+              </form>
             </li>
           )}
-          {session?.user && (
+          {session && (
             <li>
               <details>
                 <summary>

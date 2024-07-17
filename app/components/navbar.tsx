@@ -4,10 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { SignIn } from "./signin-button";
 import { SignOut } from "./signout-button";
+import { Session } from "next-auth";
 
-export default async function Navbar() {
-  const session = await auth();
+interface ParentComponentProps {
+  children: React.ReactNode;
+  session: Session | null;
+}
 
+const Navbar: React.FC<ParentComponentProps> = (
+  { children , session},
+  
+) => {
   return (
     <div className="drawer ">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -73,6 +80,7 @@ export default async function Navbar() {
             </ul>
           </div>
         </div>
+        {children}
       </div>
       <div className="drawer-side">
         <label
@@ -114,4 +122,5 @@ export default async function Navbar() {
       </div>
     </div>
   );
-}
+};
+export default Navbar;

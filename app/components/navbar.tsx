@@ -2,6 +2,8 @@ import React from "react";
 import { auth, signIn, signOut } from "@/auth";
 import Image from "next/image";
 import Link from "next/link";
+import { SignIn } from "./signin-button";
+import { SignOut } from "./signout-button";
 
 export default async function Navbar() {
   const session = await auth();
@@ -33,15 +35,13 @@ export default async function Navbar() {
             </label>
           </div>
           <div className="mx-2 flex-1 px-2 text-2xl font-extrabold">
-            Recipe Radar
+            Recipe Finder
           </div>
           <div className="hidden flex-none lg:block">
             <ul className="menu menu-horizontal">
               {!session && (
                 <li>
-                  <Link href="/api/auth/signin" className="btn">
-                    Sign In
-                  </Link>
+                  <SignIn />
                 </li>
               )}
               {session && (
@@ -64,19 +64,7 @@ export default async function Navbar() {
 
                     <ul className="bg-primary rounded-t-none p-2">
                       <li>
-                        <form
-                          action={async () => {
-                            "use server";
-                            await signOut({ redirectTo: "/" });
-                          }}
-                        >
-                          <button
-                            type="submit"
-                            className="text-xl font-extrabold"
-                          >
-                            Sign out
-                          </button>
-                        </form>
+                        <SignOut />
                       </li>
                     </ul>
                   </details>
@@ -95,9 +83,7 @@ export default async function Navbar() {
         <ul className="menu bg-base-200 min-h-full w-80 p-4">
           {!session && (
             <li>
-              <Link href="/api/auth/signin" className="btn">
-                Sign In
-              </Link>
+              <SignIn />
             </li>
           )}
           {session && (
@@ -118,14 +104,7 @@ export default async function Navbar() {
 
                 <ul className="bg-base-200 rounded-t-none p-2">
                   <li>
-                    <form
-                      action={async () => {
-                        "use server";
-                        await signOut({ redirectTo: "/" });
-                      }}
-                    >
-                      <button type="submit">Sign out</button>
-                    </form>
+                    <SignOut />
                   </li>
                 </ul>
               </details>

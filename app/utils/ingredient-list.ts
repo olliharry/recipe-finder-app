@@ -2,7 +2,7 @@ export default function GetList(){
 
 
 
- let list = ['spice powder',
+ let list = [
 'acorn squash',
 'adobo sauce',
 'agave nectar',
@@ -845,6 +845,7 @@ export default function GetList(){
 'sparkling wine',
 'spelt flour',
 'spicy brown mustard',
+'spice powder',
 'spinach',
 'sprite',
 'sprouts',

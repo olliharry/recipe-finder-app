@@ -16,7 +16,7 @@ interface Recipe {
 
 export default function IngredientSelect() {
   const [suggestions, setSuggestions] = useState<string[]>([]);
-  const [ranking, setRanking] = useState(2);
+  const [ranking, setRanking] = useState(1);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
 
   return (
@@ -42,7 +42,7 @@ export default function IngredientSelect() {
           <button
             className="btn btn-sm"
             onClick={async () => {
-              let result = await GetRecipes(suggestions, ranking);
+              let result = await GetRecipes(suggestions);
               if (typeof result != "string") {
                 setRecipes(result);
               }
@@ -50,51 +50,6 @@ export default function IngredientSelect() {
           >
             Search Recipes
           </button>
-        </div>
-
-        <div className="form-control">
-          <label className="label cursor-pointer flex ">
-            <span className="label-text">
-              Maximize usage of ingredients you have.
-            </span>
-            <div className="flex">
-              <input
-                type="radio"
-                name="radio-10"
-                onClick={() => setRanking(1)}
-                className="radio checked:bg-primary"
-                defaultChecked
-              />
-              <div
-                className="tooltip tooltip-left md:tooltip-right"
-                data-tip="Pritorize recipes using the maximun amount of your ingredients. May include recipes that you are missing many ingredients for."
-              >
-                <button className="btn btn-xs">?</button>
-              </div>
-            </div>
-          </label>
-        </div>
-        <div className="form-control">
-          <label className="label cursor-pointer flex">
-            <span className="label-text">
-              Minimize usage of ingredients that you don`t have.
-            </span>
-            <div className="flex">
-              <input
-                type="radio"
-                name="radio-10"
-                onClick={() => setRanking(2)}
-                className="radio checked:bg-primary"
-                defaultChecked
-              />
-              <div
-                className="tooltip tooltip-left md:tooltip-right"
-                data-tip="Prioritize recipes that have the least amount of missing ingredients."
-              >
-                <button className="btn btn-xs">?</button>
-              </div>
-            </div>
-          </label>
         </div>
       </div>
       <div className="flex justify-center">

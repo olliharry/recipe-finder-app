@@ -9,12 +9,12 @@ interface Recipe{
     recipeName:string;
 }
 
-export default async function GetRecipes(ingredients:string[], ranking:number) {
+export default async function GetRecipes(ingredients:string[]) {
     if(ingredients.length<3){
         return 'Too few ingredients!'
     }
     const apiKey = process.env.SPOON_API_KEY;
-    const url = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredients}&number=10&ranking=${ranking}&ignorePantry=true`
+    const url = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredients}&number=10&ranking=1&ignorePantry=true`
     const response = await axios.get(url);
     //console.log(response.data);
 

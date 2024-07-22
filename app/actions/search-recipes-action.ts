@@ -16,7 +16,7 @@ export default async function GetRecipes(ingredients:string[]) {
     const apiKey = process.env.SPOON_API_KEY;
     const url = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredients}&number=10&ranking=1&ignorePantry=true`
     const response = await axios.get(url);
-    //console.log(response.data);
+    
 
     if(!response.data){
         return 'error!'
@@ -42,6 +42,5 @@ export default async function GetRecipes(ingredients:string[]) {
         }
         recipes.push(newRecipe);
     }
-    console.log(recipes);
     return recipes;
 }

@@ -24,9 +24,25 @@ model User {
     sessions      Session[]
     preferences   Preference[]
     itineraries   Itinerary[]
+    favRecipes    Recipe[]
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+}
+
+model Recipe {
+    id           String   @id @default(cuid())
+    userId       String
+    recipeID     Int
+    recipeName   String
+    ingredients  String[]
+    instructions String[]
+    recipeImage  String
+    vegetarian   Boolean
+    vegan        Boolean
+    glutenFree   Boolean
+    dairyFree    Boolean
+    user         User     @relation(fields: [userId], references: [id])
 }
 
 model Preference {

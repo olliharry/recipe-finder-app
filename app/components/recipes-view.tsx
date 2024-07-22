@@ -77,7 +77,12 @@ const RecipesView: React.FC<RecipesViewProps> = ({ recipes }) => {
               <button
                 className="btn rounded-full w-1/2"
                 onClick={async () => {
-                  await FavouriteRecipe(recipe.recipeId);
+                  const r = await FavouriteRecipe(recipe.recipeId);
+                  if (r == 2) {
+                    setFavourites((prevFavourites) =>
+                      prevFavourites.filter((id) => id !== recipe.recipeId)
+                    );
+                  }
                 }}
               >
                 <svg
@@ -100,7 +105,13 @@ const RecipesView: React.FC<RecipesViewProps> = ({ recipes }) => {
               <button
                 className="btn rounded-full w-1/2"
                 onClick={async () => {
-                  await FavouriteRecipe(recipe.recipeId);
+                  const r = await FavouriteRecipe(recipe.recipeId);
+                  if (r == 1) {
+                    setFavourites((prevFavourites) => [
+                      ...prevFavourites,
+                      recipe.recipeId,
+                    ]);
+                  }
                 }}
               >
                 <svg

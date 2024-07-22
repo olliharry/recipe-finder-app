@@ -22,7 +22,7 @@ export async function FavouriteRecipe(recipeId:number ){
                 id:recipeDelete.id,
             }
         })
-        return;
+        return 2;
     }
 
     const apiKey = process.env.SPOON_API_KEY;
@@ -62,6 +62,7 @@ export async function FavouriteRecipe(recipeId:number ){
 
         }
     })
+    return 1;
 }
 
 export async function GetAllFavourites(){

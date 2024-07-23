@@ -7,7 +7,7 @@ import axios from "axios";
 
 export async function FavouriteRecipe(recipeId:number ){
     const user = await GetUser();
-    if(!user?.email) return;
+    if(!user?.email) return 3;
 
     const recipeDelete = await prisma.recipe.findFirst({
         where:{

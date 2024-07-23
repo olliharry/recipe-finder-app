@@ -11,10 +11,7 @@ interface ParentComponentProps {
   session: Session | null;
 }
 
-const Navbar: React.FC<ParentComponentProps> = (
-  { children , session},
-  
-) => {
+const Navbar: React.FC<ParentComponentProps> = ({ children, session }) => {
   return (
     <div className="drawer ">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -42,7 +39,9 @@ const Navbar: React.FC<ParentComponentProps> = (
             </label>
           </div>
           <div className="mx-2 flex-1 px-2 text-2xl font-extrabold">
-            Recipe Finder
+            <Link href="/" className="">
+              Recipe Finder
+            </Link>
           </div>
           <div className="hidden flex-none lg:block">
             <ul className="menu menu-horizontal">
@@ -70,6 +69,11 @@ const Navbar: React.FC<ParentComponentProps> = (
                     </summary>
 
                     <ul className="bg-primary rounded-t-none p-2">
+                      <li className="pb-2">
+                        <Link href="/favourites" className="btn pb">
+                          favourites
+                        </Link>
+                      </li>
                       <li>
                         <SignOut />
                       </li>

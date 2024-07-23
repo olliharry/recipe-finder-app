@@ -5,8 +5,8 @@ export default function Home() {
       <div className="flex flex-col pt-4">
       <IngredientSelect/>
       </div>
-      
     </main>
        
   );
 }
+ 

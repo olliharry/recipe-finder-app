@@ -65,7 +65,7 @@ export async function FavouriteRecipe(recipeId:number ){
     return 1;
 }
 
-export async function GetAllFavourites(){
+export async function GetAllFavouritesIds(){
     const user = await GetUser();
     if(!user?.email) return;
 
@@ -79,6 +79,19 @@ export async function GetAllFavourites(){
     })
     if(!ids) return null;
     return ids;
+}
+
+export async function GetAllFavourites(){
+    const user = await GetUser();
+    if(!user?.email) return;
+
+    const recipes = await prisma.recipe.findMany({
+        where:{
+            userId:user.id,
+        },
+    })
+    if(!recipes) return null;
+    return recipes;
 }
 
 

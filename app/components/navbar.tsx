@@ -113,8 +113,12 @@ const Navbar: React.FC<ParentComponentProps> = ({ children, session }) => {
                     />
                   )}
                 </summary>
-
                 <ul className="bg-base-200 rounded-t-none p-2">
+                  <li className="pb-2">
+                    <Link href="/favourites" className="btn pb">
+                      favourites
+                    </Link>
+                  </li>
                   <li>
                     <SignOut />
                   </li>

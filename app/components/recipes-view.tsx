@@ -7,7 +7,7 @@ import React, {
 import Image from "next/image";
 import {
   FavouriteRecipe,
-  GetAllFavourites,
+  GetAllFavouritesIds,
 } from "../actions/favourite-recipe-action";
 import Alert from "@mui/material/Alert";
 
@@ -36,7 +36,7 @@ const RecipesView: React.FC<RecipesViewProps> = ({ recipes }) => {
     setLoading(initialLoadingState);
     const fetchFavourites = async () => {
       setFavourites([]);
-      const f = await GetAllFavourites();
+      const f = await GetAllFavouritesIds();
       if (f) {
         const newFavourites = f.map((item) => item.recipeID);
         setFavourites(newFavourites);

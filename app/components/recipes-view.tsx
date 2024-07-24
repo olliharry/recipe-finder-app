@@ -25,11 +25,15 @@ interface RecipesViewProps {
 
 const RecipesView: React.FC<RecipesViewProps> = ({ recipes }) => {
   const [favourites, setFavourites] = useState<number[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean[]>([false]);
   const [showAlert, setShowAlert] = useState(false);
   const r = recipes[0];
 
+  
+
   useEffect(() => {
+    const initialLoadingState = Array(recipes.length).fill(false);
+    setLoading(initialLoadingState);
     const fetchFavourites = async () => {
       setFavourites([]);
       const f = await GetAllFavourites();
@@ -37,7 +41,6 @@ const RecipesView: React.FC<RecipesViewProps> = ({ recipes }) => {
         const newFavourites = f.map((item) => item.recipeID);
         setFavourites(newFavourites);
       }
-      setLoading(false);
     };
 
     fetchFavourites();
@@ -86,14 +89,18 @@ const RecipesView: React.FC<RecipesViewProps> = ({ recipes }) => {
                   <li key={uI}>{usedIngredient}</li>
                 ))}
               </ul>
-              {loading && (
+              {loading[index] && (
                 <span className="loading loading-spinner loading-md"></span>
               )}
-              {favourites.includes(recipe.recipeId) && !loading && (
+              {favourites.includes(recipe.recipeId) && !loading[index] && (
                 <button
                   className="btn rounded-full w-15"
                   onClick={async () => {
-                    setLoading(true);
+                    setLoading((prevLoading) => {
+                      const newLoading = [...prevLoading];
+                      newLoading[index] = true;
+                      return newLoading;
+                    });
                     const r = await FavouriteRecipe(recipe.recipeId);
                     if (r == 2) {
                       setFavourites((prevFavourites) =>
@@ -107,7 +114,11 @@ const RecipesView: React.FC<RecipesViewProps> = ({ recipes }) => {
                         behavior: "smooth",
                       });
                     }
-                    setLoading(false);
+                    setLoading((prevLoading) => {
+                      const newLoading = [...prevLoading];
+                      newLoading[index] = false;
+                      return newLoading;
+                    });
                   }}
                 >
                   <svg
@@ -126,11 +137,15 @@ const RecipesView: React.FC<RecipesViewProps> = ({ recipes }) => {
                   </svg>
                 </button>
               )}
-              {!favourites.includes(recipe.recipeId) && !loading && (
+              {!favourites.includes(recipe.recipeId) && !loading[index] && (
                 <button
                   className="btn rounded-full w-15"
                   onClick={async () => {
-                    setLoading(true);
+                    setLoading((prevLoading) => {
+                      const newLoading = [...prevLoading];
+                      newLoading[index] = true;
+                      return newLoading;
+                    });
                     const r = await FavouriteRecipe(recipe.recipeId);
                     if (r == 1) {
                       setFavourites((prevFavourites) => [
@@ -145,7 +160,11 @@ const RecipesView: React.FC<RecipesViewProps> = ({ recipes }) => {
                         behavior: "smooth",
                       });
                     }
-                    setLoading(false);
+                    setLoading((prevLoading) => {
+                      const newLoading = [...prevLoading];
+                      newLoading[index] = false;
+                      return newLoading;
+                    });
                   }}
                 >
                   <svg

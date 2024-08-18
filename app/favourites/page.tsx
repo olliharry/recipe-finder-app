@@ -10,9 +10,8 @@ export default async function page() {
   const favourites = await GetAllFavourites();
   if(favourites?.length == 0 || favourites==undefined) return <div>No Favourites!</div>;
   return (
-    <div>
+    <div className="flex justify-center">
       <FavouriteView favourites={favourites} />
-      
-    </div>
+    </div>  
   );
 }

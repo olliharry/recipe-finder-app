@@ -10,7 +10,7 @@ interface Recipe{
 }
 
 export default async function GetRecipes(ingredients:string[]) {
-    if(ingredients.length<3){
+    if(ingredients.length<1){
         return 'Too few ingredients!'
     }
     const apiKey = process.env.SPOON_API_KEY;

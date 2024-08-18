@@ -11,17 +11,20 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.4.1",
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@mui/material": "^5.16.4",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^5.16.6",
+    "@mui/material": "^5.16.6",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@prisma/client": "^5.16.2",
     "axios": "^1.7.2",
     "next": "14.2.4",
     "next-auth": "^5.0.0-beta.19",
+    "npm": "^10.8.2",
     "react": "^18",
     "react-dom": "^18",
-    "styled-components": "^6.1.12"
+    "styled-components": "^6.1.12",
+    "vercel": "^32.3.0"
   },
   "devDependencies": {
     "@types/node": "^20",
